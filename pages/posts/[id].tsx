@@ -1,16 +1,30 @@
 import Link from "next/link";
+import { GetStaticProps } from "next";
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { posts } from "../blog";
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const paths = getAllPostIds();
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export default function Post({ postData }: any) {
+function getAllPostIds() {
+  return posts.map((post) => {
+    return {
+      params: {
+        id: post.id.toString(),
+      },
+    };
+  });
+}
+export default function Post({
+  postData,
+}: {
+  postData: { title: string; date: string; article: string; id: string };
+}) {
   return (
     <Layout title={postData.id}>
       <article className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -18,7 +32,7 @@ export default function Post({ postData }: any) {
         <p>{postData.date}</p>
 
         <br />
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: postData.article }} />
         <br />
         <Link className="text-xl underline hover:text-blue-500" href="/blog">
           Terug naar overzicht
@@ -28,13 +42,13 @@ export default function Post({ postData }: any) {
   );
 }
 
-export async function getStaticProps({ params }: any) {
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   // Add the "await" keyword like this:
-  const postData = await getPostData(params.id);
+  const postData = posts[params.id];
 
   return {
     props: {
       postData,
     },
   };
-}
+};
