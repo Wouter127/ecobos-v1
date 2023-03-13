@@ -2,10 +2,14 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Image from "next/image";
 import header from "../public/images/header-home-ecobos.jpeg";
+import ShopNavigation from "../components/shop-navigation";
+import ShopCategories from "../components/shop-categories";
 
 export default function Shop() {
   return (
     <Layout title="Shop">
+      <ShopNavigation></ShopNavigation>
+      <ShopCategories></ShopCategories>
       <header>
         <Image
           src={header}
@@ -17,11 +21,10 @@ export default function Shop() {
           <h1 className="text-4xl">Ecobos webshop</h1>
         </div>
       </header>
-      <section className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-16">
-
-      <Link className="text-xl underline hover:text-blue-500" href="/">
-        Back to home
-      </Link>
+      <section className="mx-auto max-w-7xl px-2 py-16 sm:px-6 lg:px-8">
+        <Link className="text-xl underline hover:text-blue-500" href="/">
+          Back to home
+        </Link>
       </section>
     </Layout>
   );
