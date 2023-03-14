@@ -589,7 +589,7 @@ export default function Example() {
 function NavigationMenu({ categories }) {
   return categories.map((category) => (
     category.items.length == 0 ? (
-                <Link href="/shop">{category.title}</Link>
+                <Link href="/shop" key={category.id}>{category.title}</Link>
               ) : (<Popover key={category.id}>
       {({ open }) => (
         <>
