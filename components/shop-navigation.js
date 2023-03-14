@@ -326,7 +326,7 @@ export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white sticky top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -543,22 +543,32 @@ export default function Example() {
 
                         <Transition
                           as={Fragment}
-                          enter="transition ease-out duration-1000"
+                          enter="transition ease-out duration-500"
                           enterFrom="-translate-x-full"
                           enterTo="translate-x-0"
-                          leave="transition ease-in duration-1000"
+                          leave="transition ease-in duration-300"
                           leaveFrom="-translate-x-0"
                           leaveTo="-translate-x-full"
                         >
                           <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                            <div className="relative bg-white">
-                              <div className="mx-auto max-w-7xl px-8">
-                                <NavigationMenu
-                                  categories={categories}
-                                ></NavigationMenu>
-                              </div>
-                            </div>
-                          </Popover.Panel>
+              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+              <div
+                className="absolute inset-0 top-1/2 bg-white shadow"
+                aria-hidden="true"
+              />
+
+              <div className="relative bg-white">
+                <div className="mx-auto max-w-7xl px-8">
+                  <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                    <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                      <NavigationMenu
+                        categories={categories}
+                      ></NavigationMenu>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Popover.Panel>
                         </Transition>
                       </>
                     )}
@@ -600,11 +610,11 @@ function NavigationMenu({ categories }) {
 
           <Transition
             as={Fragment}
-            enter="transition ease-out duration-1000"
+            enter="transition ease-out duration-500"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
-            leave="transition ease-in duration-1000"
-            leaveFrom="-translate-x-0"
+            leave="transition ease-in duration-300"
+            leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
