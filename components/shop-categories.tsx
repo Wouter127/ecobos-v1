@@ -1,302 +1,131 @@
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
+// import { useState } from "react";
+// import { Dialog, Popover } from "@headlessui/react";
+// export default function Categories() {
+//   let [isOpen, setIsOpen] = useState(true);
+//   return (
+//     <>
+//       {categories.map((category) => (
+//         <>
+//         <h1>{category.parentIds == null && category.title}</h1>
+//         <PlaceTree key={category.id} parentId={category.id}></PlaceTree>
+//         </>
+//       ))}
+//     </>
+//   );
+// }
 
-const categories = {
-  0: {
+// function PlaceTree({ id, parentId }: any) {
+//   const subCategories = categories.map((category) => {})
+//   return (
+//     <>
+//     <li>
+//       {place.title}
+//       {childIds.length > 0 && (
+//         <ol className="list-decimal list-inside ml-5">
+//           {childIds.map((childId: any) => (
+//             <PlaceTree key={childId} id={childId} placesById={placesById} />
+//           ))}
+//         </ol>
+//       )}
+//     </li>
+//       </>
+//   );
+// }
+
+import React from "react";
+const categories = [
+  {
     id: 0,
-    title: "(Root)",
-    childIds: [1, 43, 47],
+    title: "Eco pennen",
+    parentIds: [null],
   },
-  1: {
+  {
     id: 1,
-    title: "Earth",
-    childIds: [2, 10, 19, 27, 35],
+    title: "Eco potloden",
+    parentIds: [null],
   },
-  2: {
+  {
     id: 2,
-    title: "Africa",
-    childIds: [3, 4, 5, 6, 7, 8, 9],
+    title: "Sleutelhangers",
+    parentIds: [null],
   },
-  3: {
+  {
     id: 3,
-    title: "Botswana",
-    childIds: [],
+    title: "Houten",
+    parentIds: [0],
   },
-  4: {
+  {
     id: 4,
-    title: "Egypt",
-    childIds: [],
+    title: "Gerecycled papier",
+    parentIds: [0],
   },
-  5: {
+  {
     id: 5,
-    title: "Kenya",
-    childIds: [],
+    title: "Gerecycled plastic",
+    parentIds: [0],
   },
-  6: {
+  {
     id: 6,
-    title: "Madagascar",
-    childIds: [],
+    title: "Bio plastic",
+    parentIds: [0],
   },
-  7: {
+  {
     id: 7,
-    title: "Morocco",
-    childIds: [],
+    title: "Potloden",
+    parentIds: [1],
   },
-  8: {
+  {
     id: 8,
-    title: "Nigeria",
-    childIds: [],
+    title: "Fantasie potloden",
+    parentIds: [1],
   },
-  9: {
+  {
     id: 9,
-    title: "South Africa",
-    childIds: [],
+    title: "Kleurpotloden",
+    parentIds: [1],
   },
-  10: {
+  {
     id: 10,
-    title: "Americas",
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],
+    title: "Fantasie kleurpotloden",
+    parentIds: [1],
   },
-  11: {
+  {
     id: 11,
-    title: "Argentina",
-    childIds: [],
+    title: "Vulpotloden",
+    parentIds: [1],
   },
-  12: {
+  {
     id: 12,
-    title: "Brazil",
-    childIds: [],
+    title: "Houten sleutelhangers",
+    parentIds: [2],
   },
-  13: {
+  {
     id: 13,
-    title: "Barbados",
-    childIds: [],
+    title: "Gerecycled metalen sleutelhangers",
+    parentIds: [2, 0],
   },
-  14: {
-    id: 14,
-    title: "Canada",
-    childIds: [],
-  },
-  15: {
-    id: 15,
-    title: "Jamaica",
-    childIds: [],
-  },
-  16: {
-    id: 16,
-    title: "Mexico",
-    childIds: [],
-  },
-  17: {
-    id: 17,
-    title: "Trinidad and Tobago",
-    childIds: [],
-  },
-  18: {
-    id: 18,
-    title: "Venezuela",
-    childIds: [],
-  },
-  19: {
-    id: 19,
-    title: "Asia",
-    childIds: [20, 21, 22, 23, 24, 25, 26],
-  },
-  20: {
-    id: 20,
-    title: "China",
-    childIds: [],
-  },
-  21: {
-    id: 21,
-    title: "Hong Kong",
-    childIds: [],
-  },
-  22: {
-    id: 22,
-    title: "India",
-    childIds: [],
-  },
-  23: {
-    id: 23,
-    title: "Singapore",
-    childIds: [],
-  },
-  24: {
-    id: 24,
-    title: "South Korea",
-    childIds: [],
-  },
-  25: {
-    id: 25,
-    title: "Thailand",
-    childIds: [],
-  },
-  26: {
-    id: 26,
-    title: "Vietnam",
-    childIds: [],
-  },
-  27: {
-    id: 27,
-    title: "Europe",
-    childIds: [28, 29, 30, 31, 32, 33, 34],
-  },
-  28: {
-    id: 28,
-    title: "Croatia",
-    childIds: [],
-  },
-  29: {
-    id: 29,
-    title: "France",
-    childIds: [],
-  },
-  30: {
-    id: 30,
-    title: "Germany",
-    childIds: [],
-  },
-  31: {
-    id: 31,
-    title: "Italy",
-    childIds: [],
-  },
-  32: {
-    id: 32,
-    title: "Portugal",
-    childIds: [],
-  },
-  33: {
-    id: 33,
-    title: "Spain",
-    childIds: [],
-  },
-  34: {
-    id: 34,
-    title: "Turkey",
-    childIds: [],
-  },
-  35: {
-    id: 35,
-    title: "Oceania",
-    childIds: [36, 37, 38, 39, 40, 41, , 42],
-  },
-  36: {
-    id: 36,
-    title: "Australia",
-    childIds: [],
-  },
-  37: {
-    id: 37,
-    title: "Bora Bora (French Polynesia)",
-    childIds: [],
-  },
-  38: {
-    id: 38,
-    title: "Easter Island (Chile)",
-    childIds: [],
-  },
-  39: {
-    id: 39,
-    title: "Fiji",
-    childIds: [],
-  },
-  40: {
-    id: 40,
-    title: "Hawaii (the USA)",
-    childIds: [],
-  },
-  41: {
-    id: 41,
-    title: "New Zealand",
-    childIds: [],
-  },
-  42: {
-    id: 42,
-    title: "Vanuatu",
-    childIds: [],
-  },
-  43: {
-    id: 43,
-    title: "Moon",
-    childIds: [44, 45, 46],
-  },
-  44: {
-    id: 44,
-    title: "Rheita",
-    childIds: [],
-  },
-  45: {
-    id: 45,
-    title: "Piccolomini",
-    childIds: [],
-  },
-  46: {
-    id: 46,
-    title: "Tycho",
-    childIds: [],
-  },
-  47: {
-    id: 47,
-    title: "Mars",
-    childIds: [48, 49],
-  },
-  48: {
-    id: 48,
-    title: "Corn Town",
-    childIds: [],
-  },
-  49: {
-    id: 49,
-    title: "Green Hill",
-    childIds: [],
-  },
-};
-export default function Categories() {
-  let [isOpen, setIsOpen] = useState(true);
+];
 
-  const root = categories[0];
-  const categoryIds = root.childIds;
+function buildTree(categories: any, parentId = null) {
 
+  const children = categories.filter((item: any) => item.parentIds.includes(parentId));
+  if (children.length === 0) {
+    return null
+  }
   return (
-    <>
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <Dialog.Panel>
-          <Dialog.Title>Deactivate account</Dialog.Title>
-          <Dialog.Description>
-            This will permanently deactivate your account
-          </Dialog.Description>
-
-          <p>
-            Are you sure you want to deactivate your account? All of your data
-            will be permanently removed. This action cannot be undone.
-          </p>
-
-          <button onClick={() => setIsOpen(false)}>Deactivate</button>
-          <button onClick={() => setIsOpen(false)}>Cancel</button>
-        </Dialog.Panel>
-      </Dialog>
-      {categoryIds.map((id) => (
-        <PlaceTree key={id} id={id} placesById={categories} />
+    <ul className="list-decimal ml-5">
+      {children.map((child: any) => (
+        <li key={child.id}>
+          {child.title}
+          {buildTree(categories, child.id)}
+        </li>
       ))}
-    </>
+    </ul>
   );
 }
 
-function PlaceTree({ id, placesById }: any) {
-  const place = placesById[id];
-  const childIds = place.childIds;
-  return (
-    <li>
-      {place.title}
-      {childIds.length > 0 && (
-        <ol>
-          {childIds.map((childId: any) => (
-            <PlaceTree key={childId} id={childId} placesById={placesById} />
-          ))}
-        </ol>
-      )}
-    </li>
-  );
+function NavigationMenu() {
+  return <nav>{buildTree(categories)}</nav>;
 }
+
+export default NavigationMenu;

@@ -3,13 +3,11 @@ import Layout from "../components/layout";
 import Image from "next/image";
 import header from "../public/images/header-home-ecobos.jpeg";
 import ShopNavigation from "../components/shop-navigation";
-import ShopCategories from "../components/shop-categories";
 
 export default function Shop() {
   return (
     <Layout title="Shop">
       <ShopNavigation></ShopNavigation>
-      <ShopCategories></ShopCategories>
       <header>
         <Image
           src={header}
