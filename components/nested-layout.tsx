@@ -3,10 +3,10 @@ import { ReactNode } from "react";
 import Navigation from "./navigation";
 import ShopNavigation from "./shop-navigation";
 
-export default function Layout({ children, title }: any) {
+export default function Layout({ children, title, categories }: any) {
   return (
     <>
-      <ShopNavigation></ShopNavigation>
+      <ShopNavigation categories={categories}></ShopNavigation>
       {children}
     </>
   );
