@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/posts.js", "components/popover-menu.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/posts.js", "components/popover-menu.js", "components/shop-navigation.js"],
   "exclude": ["node_modules"]
 }

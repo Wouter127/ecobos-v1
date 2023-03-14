@@ -20,6 +20,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const navigation = {
   categories: [
@@ -150,79 +151,174 @@ const navigation = {
     { name: "Stores", href: "#" },
   ],
 };
+// const categories = [
+//   {
+//     id: 0,
+//     title: "Eco pennen",
+//     parentIds: [null],
+//   },
+//   {
+//     id: 1,
+//     title: "Eco potloden",
+//     parentIds: [null],
+//   },
+//   {
+//     id: 2,
+//     title: "Sleutelhangers",
+//     parentIds: [null],
+//   },
+//   {
+//     id: 3,
+//     title: "Houten",
+//     parentIds: [0],
+//   },
+//   {
+//     id: 4,
+//     title: "Gerecycled papier",
+//     parentIds: [0],
+//   },
+//   {
+//     id: 5,
+//     title: "Gerecycled plastic",
+//     parentIds: [0],
+//   },
+//   {
+//     id: 6,
+//     title: "Bio plastic",
+//     parentIds: [0],
+//   },
+//   {
+//     id: 7,
+//     title: "Potloden",
+//     parentIds: [1],
+//   },
+//   {
+//     id: 8,
+//     title: "Fantasie potloden",
+//     parentIds: [1],
+//   },
+//   {
+//     id: 9,
+//     title: "Kleurpotloden",
+//     parentIds: [1],
+//   },
+//   {
+//     id: 10,
+//     title: "Fantasie kleurpotloden",
+//     parentIds: [1],
+//   },
+//   {
+//     id: 11,
+//     title: "Vulpotloden",
+//     parentIds: [1],
+//   },
+//   {
+//     id: 12,
+//     title: "Houten sleutelhangers",
+//     parentIds: [2],
+//   },
+//   {
+//     id: 13,
+//     title: "Gerecycled metalen sleutelhangers",
+//     parentIds: [2, 0],
+//   },
+// ];
 const categories = [
   {
     id: 0,
     title: "Eco pennen",
-    parentIds: [null],
+    link: "",
+    items: [
+      {
+        id: 3,
+        title: "Houten",
+        link: "",
+        items: [],
+      },
+      {
+        id: 4,
+        title: "Gerecycled papier",
+        link: "",
+        items: [],
+      },
+      {
+        id: 5,
+        title: "Gerecycled plastic",
+        link: "",
+        items: [],
+      },
+      {
+        id: 6,
+        title: "Bio plastic",
+        link: "",
+        items: [],
+      },
+      {
+        id: 13,
+        title: "Gerecycled metalen sleutelhangers",
+        link: "",
+        items: [],
+      },
+    ],
   },
   {
     id: 1,
     title: "Eco potloden",
-    parentIds: [null],
+    link: "",
+    items: [
+      {
+        id: 7,
+        title: "Potloden",
+        link: "",
+        items: [],
+      },
+      {
+        id: 8,
+        title: "Fantasie potloden",
+        link: "",
+        items: [],
+      },
+      {
+        id: 9,
+        title: "Kleurpotloden",
+        link: "",
+        items: [],
+      },
+      {
+        id: 10,
+        title: "Fantasie kleurpotloden",
+        link: "",
+        items: [],
+      },
+      {
+        id: 11,
+        title: "Vulpotloden",
+        link: "",
+        items: [],
+      },
+    ],
   },
   {
     id: 2,
     title: "Sleutelhangers",
-    parentIds: [null],
-  },
-  {
-    id: 3,
-    title: "Houten",
-    parentIds: [0],
-  },
-  {
-    id: 4,
-    title: "Gerecycled papier",
-    parentIds: [0],
-  },
-  {
-    id: 5,
-    title: "Gerecycled plastic",
-    parentIds: [0],
-  },
-  {
-    id: 6,
-    title: "Bio plastic",
-    parentIds: [0],
-  },
-  {
-    id: 7,
-    title: "Potloden",
-    parentIds: [1],
-  },
-  {
-    id: 8,
-    title: "Fantasie potloden",
-    parentIds: [1],
-  },
-  {
-    id: 9,
-    title: "Kleurpotloden",
-    parentIds: [1],
-  },
-  {
-    id: 10,
-    title: "Fantasie kleurpotloden",
-    parentIds: [1],
-  },
-  {
-    id: 11,
-    title: "Vulpotloden",
-    parentIds: [1],
-  },
-  {
-    id: 12,
-    title: "Houten sleutelhangers",
-    parentIds: [2],
-  },
-  {
-    id: 13,
-    title: "Gerecycled metalen sleutelhangers",
-    parentIds: [2, 0],
+    link: "",
+    items: [
+      {
+        id: 12,
+        title: "Houten sleutelhangers",
+        link: "",
+        items: [],
+      },
+      {
+        id: 13,
+        title: "Gerecycled metalen sleutelhangers",
+        link: "",
+        items: [],
+      },
+    ],
   },
 ];
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -230,7 +326,7 @@ export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white sticky top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -293,7 +389,7 @@ export default function Example() {
                       ))}
                     </Tab.List>
                   </div>
-                  <Tab.Panels as={Fragment} >
+                  <Tab.Panels as={Fragment}>
                     {navigation.categories.map((category) => (
                       <Tab.Panel
                         key={category.name}
@@ -426,133 +522,61 @@ export default function Example() {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
 
-              {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
-                </a>
-              </div>
-
               {/* Flyout menus */}
-              <div className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <div className="hidden lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   <Popover className="flex">
-                      {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
-                              )}
-                            >
-                              CATEGORIES
-                            </Popover.Button>
-                          </div>
-
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-1000"
-                            enterFrom="-translate-x-full"
-                            enterTo="translate-x-0"
-                            leave="transition ease-in duration-1000"
-                            leaveFrom="-translate-x-0"
-                            leaveTo="-translate-x-full"
+                    {({ open }) => (
+                      <>
+                        <div className="relative flex">
+                          <Popover.Button
+                            className={classNames(
+                              open
+                                ? "border-indigo-600 text-indigo-600"
+                                : "border-transparent text-gray-700 hover:text-gray-800",
+                              "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                            )}
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div
-                                className="absolute inset-0 top-1/2 bg-white shadow"
-                                aria-hidden="true"
-                              />
+                            CATEGORIES
+                          </Popover.Button>
+                        </div>
 
-                              <div className="relative bg-white">
-                                <div className="mx-auto max-w-7xl px-8">
-                                      <NavigationMenu></NavigationMenu>
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Popover>
-                  
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-500"
+                          enterFrom="-translate-x-full"
+                          enterTo="translate-x-0"
+                          leave="transition ease-in duration-300"
+                          leaveFrom="-translate-x-0"
+                          leaveTo="-translate-x-full"
+                        >
+                          <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+              <div
+                className="absolute inset-0 top-1/2 bg-white shadow"
+                aria-hidden="true"
+              />
 
-                  {navigation.pages.map((page) => (
-                    <a
-                      key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      {page.name}
-                    </a>
-                  ))}
+              <div className="relative bg-white">
+                <div className="mx-auto max-w-7xl px-8">
+                  <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                    <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                      <NavigationMenu
+                        categories={categories}
+                      ></NavigationMenu>
+                    </div>
+                  </div>
                 </div>
               </div>
-
+            </Popover.Panel>
+                        </Transition>
+                      </>
+                    )}
+                  </Popover>
+                </div>
+              </div>
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Create account
-                  </a>
-                </div>
-
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a
-                    href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800"
-                  >
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
-
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </div>
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
-                </div>
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"></div>
               </div>
             </div>
           </div>
@@ -562,97 +586,59 @@ export default function Example() {
   );
 }
 
-function buildTree(categories: any, parentId = null) {
-  const children = categories.filter((item: any) => item.parentIds.includes(parentId));
-  if (children.length === 0) {
-    return null
-  }
-  return (
-    <>
-      {children.map((child: any) => (
-        <Popover key={child.id}>
-          {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
-                              )}
-                            >
-                              {child.title}
-                            </Popover.Button>
-                          </div>
+function NavigationMenu({ categories }) {
+  return categories.map((category) => (
+    category.items.length == 0 ? (
+                <Link href="/shop" key={category.id}>{category.title}</Link>
+              ) : (<Popover key={category.id}>
+      {({ open }) => (
+        <>
+          <div className="relative flex">
+            <Popover.Button
+              className={classNames(
+                open
+                  ? "border-indigo-600 text-indigo-600"
+                  : "border-transparent text-gray-700 hover:text-gray-800",
+                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+              )}
+            >
+              
+                {category.title}
+              
+            </Popover.Button>
+          </div>
 
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-1000"
-                            enterFrom="-translate-x-full"
-                            enterTo="translate-x-0"
-                            leave="transition ease-in duration-1000"
-                            leaveFrom="-translate-x-0"
-                            leaveTo="-translate-x-full"
-                          >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div
-                                className="absolute inset-0 top-1/2 bg-white shadow"
-                                aria-hidden="true"
-                              />
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-500"
+            enterFrom="-translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition ease-in duration-300"
+            leaveFrom="translate-x-0"
+            leaveTo="-translate-x-full"
+          >
+            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+              <div
+                className="absolute inset-0 top-1/2 bg-white shadow"
+                aria-hidden="true"
+              />
 
-                              <div className="relative bg-white">
-                                <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
-                                    <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
-                                    {buildTree(categories, child.id)}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                            </Transition>
-
-                        </>
-                      )}
-        </Popover>
-      ))}
-    </>
-  );
+              <div className="relative bg-white">
+                <div className="mx-auto max-w-7xl px-8">
+                  <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                    <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                      <NavigationMenu
+                        categories={category.items}
+                      ></NavigationMenu>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
+    </Popover>)
+  ));
 }
-
-function NavigationMenu() {
-  return <>{buildTree(categories)}</>;
-}
-
-
-// category.sections.map((section) => (
-//   <div key={section.name}>
-//     <p
-//       id={`${section.name}-heading`}
-//       className="font-medium text-gray-900"
-//     >
-//       {section.name}
-//     </p>
-//     <ul
-//       role="list"
-//       aria-labelledby={`${section.name}-heading`}
-//       className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-//     >
-//       {section.items.map((item) => (
-//         <li
-//           key={item.name}
-//           className="flex"
-//         >
-//           <a
-//             href={item.href}
-//             className="hover:text-gray-800"
-//           >
-//             {item.name}
-//           </a>
-//         </li>
-//       ))}
-//     </ul>
-//   </div>
-// ))
