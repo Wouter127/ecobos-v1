@@ -223,106 +223,12 @@ const navigation = {
 //     parentIds: [2, 0],
 //   },
 // ];
-const categories = [
-  {
-    id: 0,
-    title: "Eco pennen",
-    link: "",
-    items: [
-      {
-        id: 3,
-        title: "Houten",
-        link: "",
-        items: [],
-      },
-      {
-        id: 4,
-        title: "Gerecycled papier",
-        link: "",
-        items: [],
-      },
-      {
-        id: 5,
-        title: "Gerecycled plastic",
-        link: "",
-        items: [],
-      },
-      {
-        id: 6,
-        title: "Bio plastic",
-        link: "",
-        items: [],
-      },
-      {
-        id: 13,
-        title: "Gerecycled metalen sleutelhangers",
-        link: "",
-        items: [],
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: "Eco potloden",
-    link: "",
-    items: [
-      {
-        id: 7,
-        title: "Potloden",
-        link: "",
-        items: [],
-      },
-      {
-        id: 8,
-        title: "Fantasie potloden",
-        link: "",
-        items: [],
-      },
-      {
-        id: 9,
-        title: "Kleurpotloden",
-        link: "",
-        items: [],
-      },
-      {
-        id: 10,
-        title: "Fantasie kleurpotloden",
-        link: "",
-        items: [],
-      },
-      {
-        id: 11,
-        title: "Vulpotloden",
-        link: "",
-        items: [],
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Sleutelhangers",
-    link: "",
-    items: [
-      {
-        id: 12,
-        title: "Houten sleutelhangers",
-        link: "",
-        items: [],
-      },
-      {
-        id: 13,
-        title: "Gerecycled metalen sleutelhangers",
-        link: "",
-        items: [],
-      },
-    ],
-  },
-];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Example({categories}) {
   const [open, setOpen] = useState(false);
 
   return (
