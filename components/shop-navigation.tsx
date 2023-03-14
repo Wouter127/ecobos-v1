@@ -563,7 +563,6 @@ export default function Example() {
 }
 
 function buildTree(categories: any, parentId = null) {
-  const [open, setOpen] = useState(false);
   const children = categories.filter((item: any) => item.parentIds.includes(parentId));
   if (children.length === 0) {
     return null
