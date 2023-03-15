@@ -232,7 +232,7 @@ export default function Example({categories}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white sticky top-0 z-50">
+    <div className="bg-white md:sticky md:top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -421,7 +421,7 @@ export default function Example({categories}) {
             <div className="flex h-16 items-center">
               <button
                 type="button"
-                className="rounded-md bg-pink-500 p-2 text-gray-400 lg:hidden"
+                className="rounded-md p-2 text-gray-400 lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
@@ -434,7 +434,7 @@ export default function Example({categories}) {
                   <Popover className="flex">
                     {({ open }) => (
                       <>
-                        <div className="relative flex">
+                        
                           <Popover.Button
                             className={classNames(
                               open
@@ -445,7 +445,7 @@ export default function Example({categories}) {
                           >
                             CATEGORIES
                           </Popover.Button>
-                        </div>
+                        
 
                         <Transition
                           as={Fragment}
@@ -456,7 +456,7 @@ export default function Example({categories}) {
                           leaveFrom="-translate-x-0"
                           leaveTo="-translate-x-full"
                         >
-                          <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                          <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 overflow-y-auto max-h-[50vh]">
               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
               <div
                 className="absolute inset-0 top-1/2 bg-white shadow"
