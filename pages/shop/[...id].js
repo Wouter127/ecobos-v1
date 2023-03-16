@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { GetStaticProps } from "next";
 import Layout from "../../components/layout";
-import { categories } from "../../lib/categories";
+import { categories, categoriesById } from "../../lib/categories";
 import CategorySection from "../../components/category-section"
+import getCategory from "../../lib/getcategory";
 
 export const getStaticPaths = async () => {
   const paths = getAllCategoryIds(categories);
@@ -12,64 +11,47 @@ export const getStaticPaths = async () => {
   };
 };
 
-// function getAllCategoryIds() {
-//   const paths = []
-//   categories.map((category) => {
-//     paths.push([category.id])
-//     if (category.items){
-      
-//       category.items.map((subCategory) => {
-//         paths.push([category.id, subCategory.id])
-//       })
-//       }
-
-//   });
-//   console.log(paths)
-//   const test = paths.map((category) => {
-//     return {
-//       params: {id: [category.toString()]},
-//       };
-//   });
-//   console.log(test)
-//   return test;
-// }
 function getPaths(categories, parentIds = [], paths = []) {
   categories.map((category) => {
     const currentIds = [...parentIds, category.id.toString()];
     paths.push(currentIds);
     if (category.items.length != 0) {
       return getPaths(category.items, currentIds, paths);
-    } else {
-      return
     }
   });
   return paths
 }
+
 function getAllCategoryIds(categories) {
   const paths = getPaths(categories)
   return paths.map((category) => {
-    console.log(category)
     return {
       params: {id: category},
       };
   });
 }
 
-export default function Category({categoryData}) {
+export default function Category({activeCategory}) {
   return (
-    <Layout title={categoryData.title}>
-      <CategorySection categories={categoryData.items} title={categoryData.title}>
+    <Layout title={activeCategory.title}>
+      {activeCategory.items.length != 0
+      ?
+      <CategorySection categories={activeCategory.items} title={activeCategory.title}>
       </CategorySection>
+      :
+      <h1>hier komen de producten</h1>
+      }
     </Layout>
   );
 }
 
-export const getStaticProps = async ({ params }) => {
-  // Add the "await" keyword like this:
-  const categoryData = categories.find((category) => category.id.toString() == params.id);
+export async function getStaticProps({params}) {
+  // Add the "await" keyword like this
+  const activeCategory = getCategory(params.id, categories)
+  console.log(activeCategory)
   return {
     props: {
-      categoryData,
+      activeCategory,
     },
   };
 };

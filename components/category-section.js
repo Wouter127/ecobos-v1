@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import Layout from "./layout";
+import { useRouter } from 'next/router'
 
 export default function CategorySection({categories, title="Onze categoriëen"}) {
+  const router = useRouter()
   return (
     <div className="bg-gray-100">
 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,7 +22,7 @@ export default function CategorySection({categories, title="Onze categoriëen"})
             />
           </div>
           <h3 className="mt-6 text-sm text-gray-500">
-            <Link href={"/shop/" + category.id}>
+            <Link href={router.asPath +"/"+ category.id}>
               <span className="absolute inset-0" />
               {category.title}
             </Link>
