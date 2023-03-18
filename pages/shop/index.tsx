@@ -4,12 +4,12 @@ import Image from "next/image";
 import header from "../../public/images/header-home-ecobos.jpeg";
 import ShopNavigation from "../../components/shop-navigation";
 import CategorySection from "../../components/category-section";
-import {categories} from "../../lib/categories"
+import { shopItems } from "../../lib/categories";
 
 export default function Shop() {
   return (
     <Layout title="Shop">
-      <ShopNavigation categories={categories}></ShopNavigation>
+      <ShopNavigation categories={shopItems}></ShopNavigation>
       <header>
         <Image
           src={header}
@@ -21,7 +21,7 @@ export default function Shop() {
           <h1 className="text-4xl">Ecobos webshop</h1>
         </div>
       </header>
-    <CategorySection categories={categories}></CategorySection>
+      <CategorySection categories={shopItems}></CategorySection>
     </Layout>
   );
 }

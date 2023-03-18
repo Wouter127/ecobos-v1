@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { GetStaticProps } from "next";
+import { GetStaticProps } from "next/types";
 import Layout from "../../components/layout";
 import { posts } from "../blog";
 
 export const getStaticPaths = async () => {
   const paths = getAllPostIds();
-  console.log(paths)
   return {
     paths,
     fallback: false,
@@ -46,7 +45,6 @@ export default function Post({
 export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   // Add the "await" keyword like this:
   const postData = posts[params.id];
-console.log(postData)
   return {
     props: {
       postData,
