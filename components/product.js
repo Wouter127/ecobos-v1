@@ -72,7 +72,7 @@ export default function Product({ product }) {
               <div key={product.id} className="group relative">
                 <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1 lg:aspect-h-1 group-hover:opacity-75 sm:h-64">
                   <img
-                    src={product.imageSrc}
+                    src={product.media[0].filename}
                     alt={product.imageAlt}
                     className="h-full w-full object-cover object-center"
                   />
