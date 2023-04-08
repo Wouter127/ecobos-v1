@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import slugify from "../lib/slugify";
 
-export default function CategorySection({
+export default function ProductSection({
   categories,
   title = "Onze categoriëen",
 }) {
@@ -18,7 +18,7 @@ export default function CategorySection({
               <div key={category.id} className="group relative">
                 <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1 lg:aspect-h-1 group-hover:opacity-75 sm:h-64">
                   <img
-                    src={category.imageSrc}
+                    src={category.media[0].filename}
                     alt={category.imageAlt}
                     className="h-full w-full object-cover object-center"
                   />
